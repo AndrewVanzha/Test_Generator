@@ -1,0 +1,24 @@
+php_value error_reporting -1
+php_value display_errors on
+
+<IfModule mod_rewrite.c>
+  Options +FollowSymLinks
+  Options -Indexes
+  RewriteEngine On
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-l
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME} !/index.php$
+  RewriteRule ^(.*)$ /index.php
+  RewriteRule .htaccess - [F]
+</IfModule>
+
+#<IfModule dir_module>
+    #DirectoryIndex index.php
+#</IfModule>
+AddDefaultCharset utf-8
+
+RewriteEngine On
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} ^www\. [NC]
+RewriteCond %{HTTP_HOST} ^(?:www\.)?(.+)$ [NC]
